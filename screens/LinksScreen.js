@@ -24,13 +24,23 @@ export class LinksScreen extends React.Component {
 
   render() {
     return (
-        <SafeAreaView style={styles.container}>
-          <FlatList
+        <ScrollView style={styles.container}>
+          
+          {this.props.movies.map((employee) => (
+            <View style={styles.employeeWrapper} key={employee.id}>
+              <Text style={styles.textCenter}>Employee_id : {employee.id}</Text>
+              <Text style={styles.textCenter}>Employee Name : {employee.employee_name}</Text>
+              <Text style={styles.textCenter}>Employee Salary : {employee.employee_salary}</Text>
+              <Text style={styles.textCenter}>Employee Age : {employee.employee_age}</Text>
+            </View>
+          ))} 
+          
+          {/* <FlatList
             data={this.props.movies}
             renderItem={({ item }) => <Item props={this.props} item={item} />}
             keyExtractor={item => item.id}
-          />
-        </SafeAreaView>
+          /> */}
+        </ScrollView>
     );
   }
 }
@@ -75,6 +85,13 @@ LinksScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
+  textCenter: {
+    textAlign: 'center'
+  },
+  employeeWrapper: {
+    padding: 10,
+    borderBottomWidth: 1
+  },
   container: {
     flex: 1,
     paddingTop: 15,

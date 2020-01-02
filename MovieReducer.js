@@ -11,6 +11,8 @@ export const movieReducer = (state=defaultState, action) => {
   
     switch(action.type) {
       case "GET_MOVIES":
+        console.log("4-----------------------------");  
+        console.log(JSON.stringify(action.payload));
         return Object.assign({}, state, {movies: action.payload});
       
       case "CREATE_MOVIE":

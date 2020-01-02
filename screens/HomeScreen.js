@@ -15,6 +15,7 @@ import { CardList } from 'react-native-card-list';
 import { MonoText } from '../components/StyledText';
 import { statement } from '@babel/template';
 import { sendLogoutAction, sendActionDecrement, sendActionIncrement } from './../LoginActions';
+import { getMovies } from './../MovieActions';
 import { connect } from 'react-redux';
 
 export class HomeScreen extends React.Component {
@@ -50,6 +51,10 @@ export class HomeScreen extends React.Component {
       content: <Text>Bedroom in Arles</Text>
     }
   ]
+
+  incrementCount() {
+    this.props.getMovies();
+  }
 
 // export default function HomeScreen() {
   render() {
@@ -97,7 +102,7 @@ export class HomeScreen extends React.Component {
       
         <Button
           title="Increment"
-          onPress={() => this.props.actionIncrement()}
+          onPress={() => this.incrementCount()}
         />
         <Button
           title="Decrement"
@@ -147,7 +152,8 @@ const mapStateToProps = state => {
 // Which actions should this component be able to send?
 // need custom middleware for async func --added thunk in createStore
 const mapDispatchToProps = {
-  sendLogout: sendLogoutAction, actionIncrement: sendActionIncrement, actionDecrement: sendActionDecrement
+  sendLogout: sendLogoutAction, actionIncrement: sendActionIncrement, actionDecrement: sendActionDecrement, 
+  getMovies: getMovies
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
